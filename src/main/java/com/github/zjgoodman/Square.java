@@ -1,6 +1,7 @@
 package com.github.zjgoodman;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -19,6 +20,37 @@ public class Square {
             throw new IllegalArgumentException("Input is not a square");
         }
         this.rows = data;
+    }
+
+    public List<List<Integer>> getRows() {
+        return rows;
+    }
+
+    public List<List<Integer>> getColumns() {
+        List<List<Integer>> columns = new ArrayList<>();
+        for (int i = 0; i < size(); i++) {
+            List<Integer> column = getColumn(i);
+            columns.add(column);
+        }
+        return columns;
+    }
+
+    public List<Integer> getRow(int row) {
+        // TODO check bounds
+        return rows.get(row);
+    }
+
+    public List<Integer> getColumn(int column) {
+        // TODO check bounds
+        return rows.stream().map(row -> row.get(column)).collect(Collectors.toList());
+    }
+
+    public List<Integer> getTopLeftBottomRightDiagonal() {
+        return Collections.emptyList();
+    }
+
+    public List<Integer> getBottomLeftTopRightDiagonal() {
+        return Collections.emptyList();
     }
 
     public int getValue(int row, int column) {

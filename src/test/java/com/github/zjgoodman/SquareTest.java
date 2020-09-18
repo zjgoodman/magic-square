@@ -3,9 +3,11 @@ package com.github.zjgoodman;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static com.github.zjgoodman.SampleSquare.SAMPLE_DATA;
+
 public class SquareTest {
-    private final int[][] data = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-    private final Square square = new Square(data);
+    private final Square square = new SampleSquare();
+    private final int[][] data = SAMPLE_DATA;
 
     @Test
     public void testGetValue() throws Exception {
