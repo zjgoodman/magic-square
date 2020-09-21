@@ -84,4 +84,53 @@ public class SquareTest {
         List<Integer> actualDiagonal = square.getBottomLeftTopRightDiagonal();
         Assert.assertEquals(expectedDiagonal, actualDiagonal);
     }
+
+    @Test
+    public void testEquals() throws Exception {
+        Square sample3x3magic = new Sample3x3MagicSquare();
+        Square sample3x3 = new Sample3x3Square();
+        Square anotherSample3x3 = new Sample3x3Square();
+
+        Assert.assertNotEquals(sample3x3, sample3x3magic);
+        Assert.assertEquals(sample3x3, anotherSample3x3);
+    }
+
+    @Test
+    public void testRotate90Degrees() throws Exception {
+        Square square = new Sample3x3Square();
+        int[][] expectedRotatedData = { { 3, 6, 9 }, { 2, 5, 8 }, { 1, 4, 7 } };
+        Square expectedRotatedSquare = new Square(expectedRotatedData);
+
+        Square actualRotatedSquare = square.rotate();
+        Assert.assertEquals(expectedRotatedSquare, actualRotatedSquare);
+    }
+
+    @Test
+    public void testRotate180Degrees() throws Exception {
+        Square square = new Sample3x3Square();
+        int[][] expectedRotatedData = { { 9, 8, 7 }, { 6, 5, 4 }, { 3, 2, 1 } };
+        Square expectedRotatedSquare = new Square(expectedRotatedData);
+
+        Square actualRotatedSquare = square.rotate().rotate();
+        Assert.assertEquals(expectedRotatedSquare, actualRotatedSquare);
+    }
+
+    @Test
+    public void testRotate270Degrees() throws Exception {
+        Square square = new Sample3x3Square();
+        int[][] expectedRotatedData = { { 7, 4, 1 }, { 8, 5, 2 }, { 9, 6, 3 } };
+        Square expectedRotatedSquare = new Square(expectedRotatedData);
+
+        Square actualRotatedSquare = square.rotate().rotate().rotate();
+        Assert.assertEquals(expectedRotatedSquare, actualRotatedSquare);
+    }
+
+    @Test
+    public void testRotate360Degrees() throws Exception {
+        Square square = new Sample3x3Square();
+        Square expectedRotatedSquare = square;
+
+        Square actualRotatedSquare = square.rotate().rotate().rotate().rotate();
+        Assert.assertEquals(expectedRotatedSquare, actualRotatedSquare);
+    }
 }

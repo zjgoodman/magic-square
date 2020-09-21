@@ -112,4 +112,19 @@ public class Square {
     private int getSum(List<Integer> values) {
         return values.stream().reduce(0, Integer::sum);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Square) {
+            Square otherSquare = (Square) other;
+            return this.rows.equals(otherSquare.rows);
+        }
+        return false;
+    }
+
+    public Square rotate() {
+        List<List<Integer>> columns = getColumns();
+        Collections.reverse(columns);
+        return new Square(columns);
+    }
 }
