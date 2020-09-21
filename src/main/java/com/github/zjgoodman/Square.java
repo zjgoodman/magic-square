@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -111,8 +112,17 @@ public class Square {
         return sumsUnion.size() == 1;
     }
 
+    public boolean isNotMagicSquare() {
+        return !isMagicSquare();
+    }
+
     private int getSum(List<Integer> values) {
         return values.stream().reduce(0, Integer::sum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rows);
     }
 
     @Override
