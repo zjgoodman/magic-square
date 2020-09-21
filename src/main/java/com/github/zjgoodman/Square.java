@@ -1,8 +1,11 @@
 package com.github.zjgoodman;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -81,5 +84,22 @@ public class Square {
 
     public int size() {
         return rows.size();
+    }
+
+    public boolean isMagicSquare() {
+        Set<Integer> rowSums = getRows().stream().map(this::getSum).collect(Collectors.toSet());
+        Set<Integer> columnSums = getColumns().stream().map(this::getSum).collect(Collectors.toSet());
+        Set<Integer> diagonalSums = new HashSet(
+                Arrays.asList(getSum(getBottomLeftTopRightDiagonal()), getSum(getTopLeftBottomRightDiagonal())));
+
+        Set<Integer> sumsUnion = rowSums;
+        sumsUnion.addAll(columnSums);
+        // sumsUnion.addAll(diagonalSums);
+
+        return sumsUnion.size() == 1;
+    }
+
+    private int getSum(List<Integer> values) {
+        return values.stream().reduce(0, Integer::sum);
     }
 }

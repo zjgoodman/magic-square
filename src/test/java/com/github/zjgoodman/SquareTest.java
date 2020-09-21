@@ -27,4 +27,13 @@ public class SquareTest {
         String actualString = square.toString();
         Assert.assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void testIsMagicSquare() throws Exception {
+        Square notMagicSquare = new SampleSquare();
+        Assert.assertFalse(notMagicSquare.isMagicSquare());
+
+        Square magicSquare = new SampleMagicSquare();
+        Assert.assertTrue(magicSquare.isMagicSquare());
+    }
 }
