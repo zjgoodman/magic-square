@@ -26,7 +26,9 @@ public class Square {
     }
 
     public List<List<Integer>> getRows() {
-        return rows;
+        List<List<Integer>> rowsCopy = new ArrayList<>(rows);
+        Collections.copy(rows, rowsCopy);
+        return rowsCopy;
     }
 
     public List<List<Integer>> getColumns() {
@@ -123,8 +125,22 @@ public class Square {
     }
 
     public Square rotate() {
-        List<List<Integer>> columns = getColumns();
-        Collections.reverse(columns);
-        return new Square(columns);
+        return new Square(reverseList(getColumns()));
+    }
+
+    public Square reflectAcrossX() {
+        List<List<Integer>> reflectedRows = getRows().stream().map(this::reverseList).collect(Collectors.toList());
+        return new Square(reflectedRows);
+    }
+
+    public Square reflectAcrossY() {
+        return new Square(reverseList(getRows()));
+    }
+
+    private <T> List<T> reverseList(List<T> originalList) {
+        List<T> copy = new ArrayList<>(originalList);
+        Collections.copy(originalList, copy);
+        Collections.reverse(copy);
+        return copy;
     }
 }
