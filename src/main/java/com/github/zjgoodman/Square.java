@@ -49,11 +49,21 @@ public class Square {
     }
 
     public List<Integer> getTopLeftBottomRightDiagonal() {
-        return Collections.emptyList();
+        List<Integer> values = new ArrayList<>();
+        for (int index = 0; index < size(); ++index) {
+            values.add(getValue(index, index));
+        }
+        return values;
     }
 
     public List<Integer> getBottomLeftTopRightDiagonal() {
-        return Collections.emptyList();
+        List<Integer> values = new ArrayList<>();
+        int row = size() - 1;
+        int column = 0;
+        while (row >= 0 && column < size()) {
+            values.add(getValue(row--, column++));
+        }
+        return values;
     }
 
     public int getValue(int row, int column) {
@@ -89,12 +99,12 @@ public class Square {
     public boolean isMagicSquare() {
         Set<Integer> rowSums = getRows().stream().map(this::getSum).collect(Collectors.toSet());
         Set<Integer> columnSums = getColumns().stream().map(this::getSum).collect(Collectors.toSet());
-        Set<Integer> diagonalSums = new HashSet(
+        Set<Integer> diagonalSums = new HashSet<>(
                 Arrays.asList(getSum(getBottomLeftTopRightDiagonal()), getSum(getTopLeftBottomRightDiagonal())));
 
         Set<Integer> sumsUnion = rowSums;
         sumsUnion.addAll(columnSums);
-        // sumsUnion.addAll(diagonalSums);
+        sumsUnion.addAll(diagonalSums);
 
         return sumsUnion.size() == 1;
     }
