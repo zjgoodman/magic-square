@@ -128,12 +128,12 @@ public class Square {
         return new Square(reverseList(getColumns()));
     }
 
-    public Square reflectAcrossX() {
+    public Square reflectAcrossY() {
         List<List<Integer>> reflectedRows = getRows().stream().map(this::reverseList).collect(Collectors.toList());
         return new Square(reflectedRows);
     }
 
-    public Square reflectAcrossY() {
+    public Square reflectAcrossX() {
         return new Square(reverseList(getRows()));
     }
 

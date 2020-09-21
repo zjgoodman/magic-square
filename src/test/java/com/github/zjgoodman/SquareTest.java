@@ -135,22 +135,22 @@ public class SquareTest {
     }
 
     @Test
-    public void testReflectAcrossX() throws Exception {
+    public void testReflectAcrossY() throws Exception {
         Square square = new Sample3x3Square();
         int[][] expectedReflectedData = { { 3, 2, 1 }, { 6, 5, 4 }, { 9, 8, 7 } };
         Square expectedReflectedSquare = new Square(expectedReflectedData);
 
-        Square actualReflectedSquare = square.reflectAcrossX();
+        Square actualReflectedSquare = square.reflectAcrossY();
         Assert.assertEquals(expectedReflectedSquare, actualReflectedSquare);
     }
 
     @Test
-    public void testReflectAcrossY() throws Exception {
+    public void testReflectAcrossX() throws Exception {
         Square square = new Sample3x3Square();
         int[][] expectedReflectedData = { { 7, 8, 9 }, { 4, 5, 6 }, { 1, 2, 3 } };
         Square expectedReflectedSquare = new Square(expectedReflectedData);
 
-        Square actualReflectedSquare = square.reflectAcrossY();
+        Square actualReflectedSquare = square.reflectAcrossX();
         Assert.assertEquals(expectedReflectedSquare, actualReflectedSquare);
     }
 }
